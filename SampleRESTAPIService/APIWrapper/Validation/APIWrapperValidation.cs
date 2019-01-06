@@ -1,32 +1,33 @@
 ﻿using APIWrapper.Model;
+using System.Collections.Generic;
 
 namespace SampleRESTAPIService.SampleData
 {
     public class APIWrapperValidation
     {
-        public static string ValidateMovieObject(Movie movie)
+        public static List<string> ValidateMovieObject(Movie movie)
         {
-            string rError = string.Empty;
+            List<string> Errors = new List<string>();
 
             // Validation for name.
             if (movie.name.Length > 50)
             {
-                rError += ErrorCodes.LIMIT_REACHED_FOR_NAME;
+                Errors.Add(ErrorCodes.LIMIT_REACHED_FOR_NAME);
             }
 
             // Validation for genre.
             if (movie.genre.Length > 25)
             {
-                rError += ErrorCodes.LIMIT_REACHED_FOR_GENRE;
+                Errors.Add(ErrorCodes.LIMIT_REACHED_FOR_GENRE);
             }
 
             // Validation for range.
             if (movie.rating > 10 || movie.rating < 0)
             {
-                rError += ErrorCodes.OUT_OF_RANGE_RATING;
+                Errors.Add(ErrorCodes.OUT_OF_RANGE_RATING);
             }
 
-            return rError;
+            return Errors;
         }
     }
 
