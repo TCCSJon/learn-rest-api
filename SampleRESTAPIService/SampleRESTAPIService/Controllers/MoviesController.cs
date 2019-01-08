@@ -22,7 +22,15 @@ namespace SampleRESTAPIService.Controllers
         [HttpGet("{id}")]
         public ActionResult<Movie> Get(int id)
         {
-            return movies.FirstOrDefault(m => m.GetID() == id);
+            return movies.FirstOrDefault(m => m.GetID() == id && !m.isDeleted());
+        }
+
+        // POST api/movies/reload/1
+        [HttpPost("{number}")]
+        public void Post(int number)
+        {
+            DataAccessor.Instance.LoadData();
+            movies = DataAccessor.Instance.GetMovies();
         }
 
         // POST api/movies

@@ -7,13 +7,13 @@ namespace SampleRESTAPIService.SampleData
 {
     public class Movie
     {
-        private long Id;
+        public long Id;
         public string name;
         public string genre;
         public int rating;
         private bool Deleted = false;
 
-        [JsonConstructor]
+        
         public Movie(string name, string genre, int rating)
         {
             this.name = name;
@@ -21,6 +21,7 @@ namespace SampleRESTAPIService.SampleData
             this.rating = rating;
         }
 
+        [JsonConstructor]
         public Movie(long Id, string name, string genre, int rating)
         {
             this.Id = Id;

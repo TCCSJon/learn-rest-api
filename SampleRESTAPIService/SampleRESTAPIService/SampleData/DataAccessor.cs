@@ -10,7 +10,7 @@ namespace SampleRESTAPIService.SampleData
 
         DataAccessor()
         {
-            MoviesLst = new MovieData().LoadDefaultData();
+            LoadData();
         }
 
         public static DataAccessor Instance
@@ -31,6 +31,11 @@ namespace SampleRESTAPIService.SampleData
         public List<Movie> GetMovies()
         {
             return MoviesLst;
+        }
+
+        public void LoadData()
+        {
+            MoviesLst = new MovieData().LoadDefaultData();
         }
     }
 }
